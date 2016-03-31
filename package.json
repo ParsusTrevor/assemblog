@@ -1,5 +1,5 @@
 {
-  "name": "assemblor",
+  "name": "assemblog",
   "version": "0.0.0",
   "description": "simple assembla api parsing",
   "main": "app.js",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tjabell/assemblor.git"
+    "url": "git+https://github.com/parsustrevor/assemblog.git"
   },
   "keywords": [
     "assemblor",
@@ -18,9 +18,9 @@
   "author": "Trevor Abell",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tjabell/assemblor/issues"
+    "url": "https://github.com/tjabell/assemblog/issues"
   },
-  "homepage": "https://github.com/tjabell/assemblor#readme",
+  "homepage": "https://github.com/tjabell/assemblog#readme",
   "dependencies": {
     "request": "^2.69.0"
   }
