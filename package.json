@@ -1,0 +1,27 @@
+{
+  "name": "assemblor",
+  "version": "0.0.0",
+  "description": "simple assembla api parsing",
+  "main": "app.js",
+  "scripts": {
+    "test": "test",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tjabell/assemblor.git"
+  },
+  "keywords": [
+    "assemblor",
+    "node"
+  ],
+  "author": "Trevor Abell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tjabell/assemblor/issues"
+  },
+  "homepage": "https://github.com/tjabell/assemblor#readme",
+  "dependencies": {
+    "request": "^2.69.0"
+  }
+}
