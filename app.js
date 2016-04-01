@@ -1,10 +1,14 @@
 var request = require('request');
-var _ = require('lodash');
+var EOL = require('os').EOL;
+var fs      = require('fs');
+var _       = require('lodash');
+
 
 var API_KEY = process.env.API_KEY;
 var API_SECRET = process.env.API_SECRET;
 
 var milestone = process.argv[2];
+var changelog = process.argv[3];
 
 var urlbase = 'https://api.assembla.com/v1/spaces/acdhh/';
 var options = {
@@ -30,6 +34,8 @@ request(options, function (error, response, body) {
 
 options.url = urlbase + 'tickets';
 
+var lines = [];
+
 request(options, function (error, response, body) {
     if(!error && response.statusCode == 200) {
         var data = JSON.parse(body);
@@ -37,18 +43,35 @@ request(options, function (error, response, body) {
         var milestoneTickets = _.filter(data, function (item) {
             return item.milestone_id === milestoneId;
         });
-        var header = '## ' + milestone;
-        console.log(header);
 
-        console.log('### Added');        
+        var header = '## ' + milestone;
+        lines.push(header);
+
+        lines.push('### Added');
         _.map(data, function (ticket) {
             var entry = '- ' + ticket.summary + ' ([#' + ticket.number + '](' + 'http://www.assembla.com/spaces/acdhh/tickets/' + ticket.number + '))';
 
-            console.log(entry);
+            lines.push(entry);
         });
 
-        console.log('### Changed');        
-        console.log('### Fixed');
+        lines.push('### Changed');
+        lines.push('### Fixed');
+
+        fs.readFile(changelog, function(err, data) {
+            if (err) throw err;
+            
+            var filelines = _.split(data, EOL);
+
+            var args = [4, 0].concat(lines);
+            Array.prototype.splice.apply(filelines, args);
+            var buffer = new Buffer(_.join(filelines, EOL), 'utf8');
+            
+            fs.open(changelog, 'w+', function(err, fd) {
+                if(err) throw err;
+                
+                fs.write(fd, buffer, 0, buffer.length, 0);
+            });
+        });
     } else {
         console.log(response);
     }
