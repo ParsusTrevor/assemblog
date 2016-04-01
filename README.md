@@ -19,4 +19,4 @@ npm install
 npm start <milestone_name> <changelog_file>
 ```
 
-Example: npm start 0.10.0
+Example: npm start 0.10.0 ./CHANGELOG.md
