@@ -18,9 +18,9 @@
   "author": "Trevor Abell",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tjabell/assemblog/issues"
+    "url": "https://github.com/parsustrevor/assemblog/issues"
   },
-  "homepage": "https://github.com/tjabell/assemblog#readme",
+  "homepage": "https://github.com/parsustrevor/assemblog#readme",
   "dependencies": {
     "lodash": "^4.7.0",
     "request": "^2.69.0"
