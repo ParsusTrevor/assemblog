@@ -16,7 +16,7 @@ export API_SECRET=<your_secret>
 npm install
 ```
 ```bash
-npm start <milestone_name> <changelog_file>
+assemblog <milestone_name> <changelog_file>
 ```
 
 Example: npm start 0.10.0 ./CHANGELOG.md
