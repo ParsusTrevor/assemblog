@@ -34,7 +34,7 @@ function findMatchingMilestoneId(body) {
 };
 
 function requestTickets(milestoneId) {
-    options.url = urlbase + 'tickets' + '/' + 'milestone' + '/' + milestoneId + '?per_page=100';
+    options.url = urlbase + 'tickets' + '/' + 'milestone' + '/' + milestoneId + '?per_page=100&ticket_status=all';
     return request(options);
 }
 
