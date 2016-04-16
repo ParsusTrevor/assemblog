@@ -4,7 +4,7 @@
   "description": "simple assembla api parsing",
   "main": "app.js",
   "scripts": {
-    "test": "test",
+    "test": "jasmine-node spec/node_spec.js",
     "start": "node app.js"
   },
   "repository": {
@@ -28,5 +28,8 @@
   },
   "bin": {
     "assemblog": "./app.js"
+  },
+  "devDependencies": {
+    "jasmine-node": "^1.14.5"
   }
 }
