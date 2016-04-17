@@ -1,6 +1,6 @@
 {
   "name": "assemblog",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "simple assembla api parsing",
   "main": "app.js",
   "scripts": {

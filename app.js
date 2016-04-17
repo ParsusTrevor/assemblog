@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 var lib     = require('./lib/assemblog');
+
+
 var request = require('request-promise');
 var EOL     = require('os').EOL;
 var fs      = require('fs');
@@ -9,9 +11,10 @@ var _       = require('lodash');
 var API_KEY    = process.env.API_KEY;
 var API_SECRET = process.env.API_SECRET;
 
-var _debug    = console.log;
+var _debug = console.log;
+
 var milestoneTitle = process.argv[2];
-var changelog = process.argv[3];
+var changelog      = process.argv[3];
 
 var urlbase = 'https://api.assembla.com/v1/spaces/acdhh/';
 var options = {
@@ -30,7 +33,7 @@ request(options)
     return milestone;
   })
   .then(function (milestoneTitle) {
-    return lib.requestTickets(milestoneTitle, options, urlbase);
+    return lib.requestTickets(milestoneTitle, options, urlbase, 1);
   })
   .then(function (body) {
     return lib.getChangeLog(body, milestone);
