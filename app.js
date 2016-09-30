@@ -13,8 +13,12 @@ var API_SECRET = process.env.API_SECRET;
 
 var _debug = console.log;
 
-var milestoneTitle = process.argv[2];
-var changelog      = process.argv[3];
+var argv = require('yargs')
+        .require('milestone', 'Must provide a milestone')
+        .argv;
+
+var milestoneName = argv.milestone;
+var changelog = argv.changelog;
 
 var urlbase = 'https://api.assembla.com/v1/spaces/acdhh/';
 var options = {
@@ -25,21 +29,26 @@ var options = {
   }
 };
 
-var milestone = null;
-
 request(options)
   .then(function(body) {
-    milestone = lib.getMilestone(body, milestoneTitle);
-    return milestone;
+    return lib.getMilestone(body, milestoneName);
   })
-  .then(function (milestoneTitle) {
-    return lib.requestTickets(milestoneTitle, options, urlbase, 1);
-  })
-  .then(function (body) {
-    return lib.getChangeLog(body, milestone);
+  .then(function (milestone) {
+    return lib.requestTickets(milestone, options, urlbase, 1)
+      .then(function(body) {
+        return lib.getChangeLog(body, milestone)
+      });
   })
   .then(function (lines) {
-    return lib.writeChangeLog(changelog, lines);
+    if(changelog)
+      return lib.writeChangeLog(changelog, lines);
+
+    lines.map((line) => {
+      process.stdout.write(`${line}\n`);
+      return line;
+    });
+
+    return lines;
   })
   .catch(function (err) {
     _debug(err);
